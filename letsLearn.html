@@ -1,0 +1,40 @@
+<head>
+  <title>letsLearn</title>
+</head>
+
+<body>
+	<h1>Welcome to Meteor!</h1>
+
+	{{> loginButtons}}
+
+	<p>Click to add to your watchlist</p>
+	<div id="showsContainer">
+		<ul id="showList">
+			{{#each titles}}
+				{{> title}}
+			{{/each}}
+		</ul>	
+
+		<ul id="watchList">
+			<p>Your Shows</p>
+			{{#each shows}}	
+				{{> show}}
+			{{/each}}	
+		</ul>	
+	</div>
+</body>
+	
+<template name="title">
+	<li class="titles">
+		<p>{{title}}</p>
+		<img src="{{img}}">
+	</li>
+</template>
+
+<template name="show">
+	<li class="shows">
+		<p>{{title}}<button class="deleteFromList">&times;</button></p>
+		<img src="{{img}}">
+	</li>
+</template>		
+
