@@ -14,8 +14,19 @@ if (Meteor.isClient) {
   });
 
   Template.body.events({
-    "click img": function(){
-      Meteor.call("addToWatchlist", this.title, this.img)
+    "click .titles > img": function(title, img){
+      var title = this.title;
+      var img = this.img;
+
+      if (UserChoices.find({title: title, username: Meteor.user().username}, {$limit: 1}).count()) {
+        console.log("ninjas")
+        return
+      }
+        UserChoices.insert({
+          title: title,
+          img: img,
+          username: Meteor.user().username
+      });
     },
     "click .deleteFromList":function(){
       Meteor.call("removeFromWatchList", this._id);
@@ -36,15 +47,7 @@ if (Meteor.isClient) {
 }
 
 Meteor.methods({
-  addToWatchlist: function(title, img){
-    console.log("hello")
-    UserChoices.insert({
-      title: title,
-      img: img,
-      username: Meteor.user().username
-    });
-    console.log("welcome to the end")
-  },
+
   removeFromWatchList:function(showId){
     UserChoices.remove(showId);
   } ,
