@@ -1,5 +1,6 @@
-AnimeTitles = new Mongo.Collection("titles")
-UserChoices = new Mongo.Collection("userChoices")
+AnimeTitles = new Mongo.Collection("titles");
+UserChoices = new Mongo.Collection("userChoices");
+
 
 if (Meteor.isClient) {
 
@@ -9,7 +10,10 @@ if (Meteor.isClient) {
       return AnimeTitles.find({}, {sort: {title:1}});
     },
     shows: function(){
-      return UserChoices.find({username: Meteor.user().username},);
+      if(Meteor.user()){
+      return UserChoices.find({username: Meteor.user().username});
+      }
+      // return "ninjas"
     }
   });
 
@@ -28,14 +32,18 @@ if (Meteor.isClient) {
           username: Meteor.user().username
       });
     },
-    "click .deleteFromList":function(){
-      Meteor.call("removeFromWatchList", this._id);
+    "click .deleteFromList":function(showId){
+      var showId = this._id
+      UserChoices.remove(showId);
     }, 
     "submit .writeReview":function(event){
       event.preventDefault();
       var review = event.target.reviewBox.value;
+      var showId = this._id;
+      
 
-      Meteor.call("addReview", review, this._id)
+     
+    AnimeTitles.update(showId, {$set: {review:review, reviewedBy: Meteor.user().username}});
 
       event.target.reviewBox.value = "";
     } 
@@ -46,15 +54,6 @@ if (Meteor.isClient) {
   });
 }
 
-Meteor.methods({
-
-  removeFromWatchList:function(showId){
-    UserChoices.remove(showId);
-  } ,
-  addReview:function(review, showId){
-    AnimeTitles.update(showId, {$set: {review: review}});
-  }
-});
 
 if (Meteor.isServer) {
   Meteor.startup(function () {

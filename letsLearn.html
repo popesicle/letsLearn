@@ -32,9 +32,16 @@
 			<input name="reviewBox" type="text" placeholder="Write a review!"/>
 		</form>
 		<p class="reviews">Reviews</p>
-		<p>{{review}}</p>	
+		<p>{{review}}</p>
+		<p>{{reviewedBy}}</p>
 	</li>
 </template>
+
+<template name="review">
+  <p>{{reviewedBy}}</p>
+  <p>{{review}}</p>
+</template>  
+
 
 <template name="show">
 	<li class="shows">
