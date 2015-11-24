@@ -6,10 +6,10 @@ if (Meteor.isClient) {
   // Displays the list of titles in AnimeTitles collection
   Template.body.helpers({
     titles: function(){
-      return AnimeTitles.find();
+      return AnimeTitles.find({}, {sort: {title:1}});
     },
     shows: function(){
-      return UserChoices.find();
+      return UserChoices.find({username: Meteor.user().username},);
     }
   });
 
@@ -19,6 +19,14 @@ if (Meteor.isClient) {
     },
     "click .deleteFromList":function(){
       Meteor.call("removeFromWatchList", this._id);
+    }, 
+    "submit .writeReview":function(event){
+      event.preventDefault();
+      var review = event.target.reviewBox.value;
+
+      Meteor.call("addReview", review, this._id)
+
+      event.target.reviewBox.value = "";
     } 
   });
 
@@ -39,7 +47,10 @@ Meteor.methods({
   },
   removeFromWatchList:function(showId){
     UserChoices.remove(showId);
-  } 
+  } ,
+  addReview:function(review, showId){
+    AnimeTitles.update(showId, {$set: {review: review}});
+  }
 });
 
 if (Meteor.isServer) {

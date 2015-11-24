@@ -1,5 +1,116 @@
 /* CSS declarations go here */
+
+body {
+
+	margin: 0;
+	background: linear-gradient(#578dcd, #92d0ff);
+}
+
+header {
+	position: fixed;
+	top: 0;
+	border-bottom: 2px solid black;
+	background-color: grey;
+	width: 100%;
+	font-family: Arial;
+}
+
+.deleteFromList {
+
+	font-size: 1rem;
+	font-weight: 400;
+	float: right;
+	color: #005201;
+	text-decoration: underline;
+}
+
+.listHeader {
+
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.reviews {
+
+	font-weight: 800;
+}
+
+.reviews + p {
+
+	padding-left: 2rem;
+}
+
+.showName {
+
+	font-size: 1.25rem;
+	font-weight: 800;
+	margin: 0;
+}
+
+.shows {
+
+	padding-bottom: 1rem;
+}
+
+.shows > img {
+
+	height: 325px;
+	width: 325px;
+}
+
 .titles > img {
+	
 	height: 400px;
 	width: 400px;
+}
+
+
+.watched {
+	
+	float: right;
+	font-weight: 200;
+	font-size: small;
+}
+
+.writeReview > input {
+
+	width: 398px;
+    height: 1rem;
+    border: 0px;
+    font-size: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: rgba(0,0,138,0.13);
+}
+
+#appHeader {
+
+	font-size: 4rem;
+	margin: 0;
+    text-align: center;
+}
+
+#showList {
+
+	list-style: none;
+	width: 400px;
+	padding: 2rem;
+}
+
+#showsContainer {
+	
+	display: flex;
+	font-family: sans-serif, Arial;
+	padding-top: 6rem;
+	width: 828px;
+	margin: auto;
+	
+
+}
+
+#watchList {
+
+	list-style: none;
+	width: 325px;
+	padding: 2rem;
 }

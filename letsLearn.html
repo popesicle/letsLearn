@@ -3,20 +3,20 @@
 </head>
 
 <body>
-	<h1>Welcome to Meteor!</h1>
-
+	<header>
+	<p id="appHeader">Build your Anime Watchlist</p>
 	{{> loginButtons}}
-
-	<p>Click to add to your watchlist</p>
+	</header>
 	<div id="showsContainer">
 		<ul id="showList">
+		<p class="listHeader">Anime on Netflix</p>
 			{{#each titles}}
 				{{> title}}
 			{{/each}}
 		</ul>	
 
 		<ul id="watchList">
-			<p>Your Shows</p>
+			<p class="listHeader">Your Shows to Watch</p>
 			{{#each shows}}	
 				{{> show}}
 			{{/each}}	
@@ -26,14 +26,19 @@
 	
 <template name="title">
 	<li class="titles">
-		<p>{{title}}</p>
+		<p class="showName">{{title}}</p>
 		<img src="{{img}}">
+		<form class="writeReview">
+			<input name="reviewBox" type="text" placeholder="Write a review!"/>
+		</form>
+		<p class="reviews">Reviews</p>
+		<p>{{review}}</p>	
 	</li>
 </template>
 
 <template name="show">
 	<li class="shows">
-		<p>{{title}}<button class="deleteFromList">&times;</button></p>
+		<p class="showName">{{title}}<span class="deleteFromList">Watched it already?</span></p>
 		<img src="{{img}}">
 	</li>
 </template>		
