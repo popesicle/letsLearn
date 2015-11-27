@@ -1,5 +1,6 @@
 AnimeTitles = new Mongo.Collection("titles");
 UserChoices = new Mongo.Collection("userChoices");
+Reviews = new Mongo.Collection("reviews");
 
 
 if (Meteor.isClient) {
